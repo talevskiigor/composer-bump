@@ -21,7 +21,7 @@ class Bumper
 
 
 	public function bump($version){
-		return $this->bumpPatch();
+		return $this->bumpPatch($version);
 	}
 
 	
@@ -54,6 +54,12 @@ class Bumper
 
 	public function parseVersion($version){
 		
+
+		if(!$version){
+			return $this->initToZero();
+		}
+		
+
 		$splits = explode('.', $version);
 
 		if(count($splits)!=3){
@@ -70,9 +76,18 @@ class Bumper
 
 		$this->major = (int)$this->major;
 		$this->minor = (int)$this->minor;
-		$this->patch = (int)$this->patch;	
+		$this->patch = (int)$this->patch;
 
 		return $this;
+	}
+
+	public function initToZero(){
+		
+		$this->major = 0;
+		$this->minor = 0;
+		$this->patch = 0;
+
+		return $this;	
 	}
 
 	public function get(){

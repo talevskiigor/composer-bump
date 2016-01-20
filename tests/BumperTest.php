@@ -67,4 +67,65 @@ class BumperTest extends PHPUnit_Framework_TestCase
      	$bumper->bumpPatch('a.b.c');
      }
 
+     /** @test */
+     public function it_will_return_inital_bump_value_where_version_is_null_or_empty_or_false(){
+
+     	$bumper = new Bumper;
+
+     	$versionNull = $bumper->bump(null);
+     	$this->assertEquals('0.0.1',$versionNull);
+
+     	$versionEmptyString = $bumper->bump(null);
+     	$this->assertEquals('0.0.1',$versionEmptyString);
+
+     	$versionFalse = $bumper->bump(false);
+     	$this->assertEquals('0.0.1',$versionFalse);
+     }
+
+     /** @test */
+     public function it_will_return_inital_patch_value_where_version_is_null_or_empty_or_false(){
+
+     	$bumper = new Bumper;
+
+     	$versionNull = $bumper->bumpPatch(null);
+     	$this->assertEquals('0.0.1',$versionNull);
+
+     	$versionEmptyString = $bumper->bumpPatch(null);
+     	$this->assertEquals('0.0.1',$versionEmptyString);
+
+     	$versionFalse = $bumper->bumpPatch(false);
+     	$this->assertEquals('0.0.1',$versionFalse);
+     }
+     
+     /** @test */
+     public function it_will_return_inital_minor_value_where_version_is_null_or_empty_or_false(){
+
+     	$bumper = new Bumper;
+
+     	$versionNull = $bumper->bumpMinor(null);
+     	$this->assertEquals('0.1.0',$versionNull);
+
+     	$versionEmptyString = $bumper->bumpMinor(null);
+     	$this->assertEquals('0.1.0',$versionEmptyString);
+
+     	$versionFalse = $bumper->bumpMinor(false);
+     	$this->assertEquals('0.1.0',$versionFalse);
+     }
+
+     /** @test */
+     public function it_will_return_inital_major_value_where_version_is_null_or_empty_or_false(){
+
+     	$bumper = new Bumper;
+
+     	$versionNull = $bumper->bumpMajor(null);
+     	$this->assertEquals('1.0.0',$versionNull);
+
+     	$versionEmptyString = $bumper->bumpMajor(null);
+     	$this->assertEquals('1.0.0',$versionEmptyString);
+
+     	$versionFalse = $bumper->bumpMajor(false);
+     	$this->assertEquals('1.0.0',$versionFalse);
+     }
+
+
  }
