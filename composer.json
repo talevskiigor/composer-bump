@@ -20,6 +20,11 @@
             "email": "igor.talevski@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Talevskiigor\\ComposerBump\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
