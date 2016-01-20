@@ -2,7 +2,7 @@
 namespace Tests;
 
 use PHPUnit_Framework_TestCase;
-use Talevskiigor\ComposerBump\Bumper;
+use Talevskiigor\ComposerBump\Helpers\Bumper;
 
 class BumperTest extends PHPUnit_Framework_TestCase
 {

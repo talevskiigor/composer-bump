@@ -1,5 +1,5 @@
 <?php
-namespace Talevskiigor\ComposerBump;
+namespace Talevskiigor\ComposerBump\Helpers;
 
 use Exception;
 /**
