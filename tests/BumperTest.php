@@ -16,7 +16,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
 	public function it_will_increment_bump_version_as_alias_of_bumpPatch(){
 		$bumper = new Bumper;
 
-		$version = $bumper->bumpPatch('1.2.3');
+		$version = $bumper->bumpPatch('1.2.3')->get();
 
 		$this->assertEquals('1.2.4',$version);
 	}
@@ -25,7 +25,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
 	public function it_will_increment_patch_version(){
 		$bumper = new Bumper;
 
-		$version = $bumper->bumpPatch('1.2.3');
+		$version = $bumper->bumpPatch('1.2.3')->get();
 
 		$this->assertEquals('1.2.4',$version);
 	}
@@ -34,7 +34,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
 	public function it_will_increment_minor_version(){
 		$bumper = new Bumper;
 
-		$version = $bumper->bumpMinor('1.2.3');
+		$version = $bumper->bumpMinor('1.2.3')->get();
 
 		$this->assertEquals('1.3.0',$version);
 	}
@@ -43,7 +43,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
 	public function it_will_increment_major_version(){
 		$bumper = new Bumper;
 
-		$version = $bumper->bumpMajor('1.2.3');
+		$version = $bumper->bumpMajor('1.2.3')->get();
 
 		$this->assertEquals('2.0.0',$version);
 	}
@@ -55,7 +55,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
      public function it_will_throw_exxeption_on_invalid_number_of_args_for_patch(){
      	$bumper = new Bumper;
 
-     	$bumper->bumpPatch('1.2.3.4.5');
+     	$bumper->bumpPatch('1.2.3.4.5')->get();
      }
      /**
       * @test
@@ -64,7 +64,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
      public function it_will_throw_exxeption_on_invalid_strings_in_version_for_patch(){
      	$bumper = new Bumper;
 
-     	$bumper->bumpPatch('a.b.c');
+     	$bumper->bumpPatch('a.b.c')->get();
      }
 
      /** @test */
@@ -72,13 +72,13 @@ class BumperTest extends PHPUnit_Framework_TestCase
 
      	$bumper = new Bumper;
 
-     	$versionNull = $bumper->bump(null);
+     	$versionNull = $bumper->bump(null)->get();
      	$this->assertEquals('0.0.1',$versionNull);
 
-     	$versionEmptyString = $bumper->bump(null);
+     	$versionEmptyString = $bumper->bump(null)->get();
      	$this->assertEquals('0.0.1',$versionEmptyString);
 
-     	$versionFalse = $bumper->bump(false);
+     	$versionFalse = $bumper->bump(false)->get();
      	$this->assertEquals('0.0.1',$versionFalse);
      }
 
@@ -87,13 +87,13 @@ class BumperTest extends PHPUnit_Framework_TestCase
 
      	$bumper = new Bumper;
 
-     	$versionNull = $bumper->bumpPatch(null);
+     	$versionNull = $bumper->bumpPatch(null)->get();
      	$this->assertEquals('0.0.1',$versionNull);
 
-     	$versionEmptyString = $bumper->bumpPatch(null);
+     	$versionEmptyString = $bumper->bumpPatch(null)->get();
      	$this->assertEquals('0.0.1',$versionEmptyString);
 
-     	$versionFalse = $bumper->bumpPatch(false);
+     	$versionFalse = $bumper->bumpPatch(false)->get();
      	$this->assertEquals('0.0.1',$versionFalse);
      }
      
@@ -102,13 +102,13 @@ class BumperTest extends PHPUnit_Framework_TestCase
 
      	$bumper = new Bumper;
 
-     	$versionNull = $bumper->bumpMinor(null);
+     	$versionNull = $bumper->bumpMinor(null)->get();
      	$this->assertEquals('0.1.0',$versionNull);
 
-     	$versionEmptyString = $bumper->bumpMinor(null);
+     	$versionEmptyString = $bumper->bumpMinor(null)->get();
      	$this->assertEquals('0.1.0',$versionEmptyString);
 
-     	$versionFalse = $bumper->bumpMinor(false);
+     	$versionFalse = $bumper->bumpMinor(false)->get();
      	$this->assertEquals('0.1.0',$versionFalse);
      }
 
@@ -117,13 +117,13 @@ class BumperTest extends PHPUnit_Framework_TestCase
 
      	$bumper = new Bumper;
 
-     	$versionNull = $bumper->bumpMajor(null);
+     	$versionNull = $bumper->bumpMajor(null)->get();
      	$this->assertEquals('1.0.0',$versionNull);
 
-     	$versionEmptyString = $bumper->bumpMajor(null);
+     	$versionEmptyString = $bumper->bumpMajor(null)->get();
      	$this->assertEquals('1.0.0',$versionEmptyString);
 
-     	$versionFalse = $bumper->bumpMajor(false);
+     	$versionFalse = $bumper->bumpMajor(false)->get();
      	$this->assertEquals('1.0.0',$versionFalse);
      }
 

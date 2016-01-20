@@ -30,7 +30,7 @@ class Bumper
 		
 		$this->patch++;
 
-		return $this->get();
+		return $this;
 	}
 	
 	public function bumpMinor($version){
@@ -39,7 +39,7 @@ class Bumper
 		$this->minor++;
 		$this->patch= 0;
 
-		return $this->get();
+		return $this;
 	}
 
 	public function bumpMajor($version){
@@ -49,7 +49,7 @@ class Bumper
 		$this->minor=0;
 		$this->patch=0;
 
-		return $this->get();
+		return $this;
 	}
 
 	public function parseVersion($version){
