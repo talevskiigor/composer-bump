@@ -19,6 +19,12 @@ class Bumper
 	protected $minor;
 	protected $patch;
 
+
+	public function bump($version){
+		return $this->bumpPatch();
+	}
+
+	
 	public function bumpPatch($version){
 		$this->parseVersion($version);
 		

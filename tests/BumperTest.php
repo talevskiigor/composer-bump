@@ -13,6 +13,15 @@ class BumperTest extends PHPUnit_Framework_TestCase
 
 
 	/** @test */
+	public function it_will_increment_bump_version_as_alias_of_bumpPatch(){
+		$bumper = new Bumper;
+
+		$version = $bumper->bumpPatch('1.2.3');
+
+		$this->assertEquals('1.2.4',$version);
+	}
+
+	/** @test */
 	public function it_will_increment_patch_version(){
 		$bumper = new Bumper;
 
@@ -44,18 +53,18 @@ class BumperTest extends PHPUnit_Framework_TestCase
       * @expectedException Exception
      **/
      public function it_will_throw_exxeption_on_invalid_number_of_args_for_patch(){
-      $bumper = new Bumper;
+     	$bumper = new Bumper;
 
-      $bumper->bumpPatch('1.2.3.4.5');
+     	$bumper->bumpPatch('1.2.3.4.5');
      }
      /**
       * @test
       * @expectedException Exception
      **/
      public function it_will_throw_exxeption_on_invalid_strings_in_version_for_patch(){
-      $bumper = new Bumper;
+     	$bumper = new Bumper;
 
-      $bumper->bumpPatch('a.b.c');
+     	$bumper->bumpPatch('a.b.c');
      }
 
  }
