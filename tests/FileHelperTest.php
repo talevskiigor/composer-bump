@@ -21,6 +21,12 @@ class FileHelperTest extends PHPUnit_Framework_TestCase {
 	'another thing'=>'some other value'
 	];
 
+		protected $initDataInvalidFile = "[
+	'something'=>'a value',[]]
+	'version'=>'1.0.0',,
+	'another thing'=>'some other value'
+	]";
+
 	protected $testFileName = 'test-dir/composer.json';
 	protected $testFileNameVFS = 'vfs://test-dir/composer.json';
 
@@ -76,7 +82,7 @@ class FileHelperTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($testVersion,$versionRead);
 	}
 
-	
+
 	/**
 	 *	@test
 	 *	@expectedException Exception
@@ -85,5 +91,19 @@ class FileHelperTest extends PHPUnit_Framework_TestCase {
 		
 
 		new FileHelper('not existing file path');
+	}
+
+	/**
+	 *	@test
+	 *	@expectedException Exception
+	 **/
+	public function it_will_thor_error_if_file_has_invalid_format(){
+		
+
+		$this->setTestingFile($this->initDataInvalidFile);
+
+		new FileHelper($this->testFileNameVFS);
+
+		
 	}
 }

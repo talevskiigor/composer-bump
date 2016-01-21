@@ -13,6 +13,10 @@ namespace Talevskiigor\ComposerBump\Commands;
 
 use Illuminate\Console\Command;
 
+use Talevskiigor\ComposerBump\Helpers\Bumpper;
+use Talevskiigor\ComposerBump\Helpers\FileHelper;
+
+
 class BumpCommand extends Command
 {
     /**
@@ -30,9 +34,9 @@ class BumpCommand extends Command
     protected $description = 'Bump version';
 
     protected $composerFilePath;
-    protected  $composerContent;
+    protected $composerContent;
     protected $newVersion;
-    protected  $currentVersion;
+    protected $currentVersion;
 
     /**
      * Create a new command instance.
@@ -42,7 +46,11 @@ class BumpCommand extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->bumper = new Bumpper();
+        $this->fileHelper = new FileHelper();
+
     }
+
 
     /**
      * Execute the console command.
@@ -75,7 +83,7 @@ class BumpCommand extends Command
 
         $this->currentVersion = $this->composerContent['version'];
 
-            $this->bumpNewVersion();
+        $this->bumpNewVersion();
 
         $this->info('Bump from: '. $this->currentVersion.' to ' . $this->newVersion);
     }
@@ -95,10 +103,10 @@ class BumpCommand extends Command
 
     }
     public function runInitVersion(){
-       $this->error('You don\'t have version setup in the file: ' . $this->composerFilePath);
-       $appendVersion = $this->confirm('Do you whant to append init version as: 1.0.0');
+     $this->error('You don\'t have version setup in the file: ' . $this->composerFilePath);
+     $appendVersion = $this->confirm('Do you whant to append init version as: 1.0.0');
 
-       if($appendVersion){
+     if($appendVersion){
         $this->appendVersion();
         $this->save();
     }
@@ -142,4 +150,7 @@ public function getJsonError(){
 
 }
 
+public function getFile(){
+    return base_path('composer.json');
+}
 }
