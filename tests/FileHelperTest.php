@@ -15,36 +15,75 @@ class FileHelperTest extends PHPUnit_Framework_TestCase {
 	'another thing'=>'some other value'
 	];
 
-	protected $rootFolder = 'test-dir';
-	protected $fileName = 'composer.json';
+	protected $initDataNoVersion = [
+	'something'=>'a value',
+	'other'=>'x y z',
+	'another thing'=>'some other value'
+	];
 
-	public function setUp()
+	protected $testFileName = 'test-dir/composer.json';
+	protected $testFileNameVFS = 'vfs://test-dir/composer.json';
+
+	public function setTestingFile($fileData)
 	{
 		
-		$this->root = vfsStream::setup($this->rootFolder);
+		$this->root = vfsStream::setup(dirname($this->testFileName));
 
+		$file = vfsStream::newFile(basename($this->testFileName));
 
-		$file = vfsStream::newFile($this->fileName);
-		
-
-		$content = json_encode($this->initData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+		$content = json_encode($fileData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
 		$file->setContent($content);
 
 		$this->root->addChild($file);
 
-		//var_dump(file_get_contents('vfs://' . $rootFolder . DIRECTORY_SEPARATOR . $fileName));
 	}
 
 
 	/** @test */
+	public function it_will_read_version_and_return_version_from_file(){
+		$this->setTestingFile($this->initData);
 
-	public function it_will_read_version_and_return_null_if_no_version_is_in_file(){
-		$filePath = 'vfs://' . $this->rootFolder . DIRECTORY_SEPARATOR . $this->fileName;
-		$file = json_decode(file_get_contents($filePath),true);
-		var_dump($file);	
-		$fileHelper = new FileHelper($filePath);
+		$version = (new FileHelper($this->testFileNameVFS))->getVersion();
 
-		$this->assertEquals($file,$fileHelper->getContents());
+		$this->assertEquals('1.0.0',$version);
+	}
+
+	/** @test */
+	public function it_will_read_version_and_return_null_when_no_version_int_file(){
+		$this->setTestingFile($this->initDataNoVersion);
+
+		$version = (new FileHelper($this->testFileNameVFS))->getVersion();
+
+		$this->assertEquals(null,$version);
+	}
+
+	/** @test */
+	public function it_will_will_write_new_version(){
+		$this->setTestingFile($this->initDataNoVersion);
+
+		$testVersion = '1.2.3';
+		$FileHelper = new FileHelper($this->testFileNameVFS);
+
+		$versionOld = $FileHelper->getVersion();
+
+		$versionWrite = $FileHelper->setVersion($testVersion)->writeFile()->getVersion();
+
+		$versionRead = (new FileHelper($this->testFileNameVFS))->getVersion();
+		
+		$this->assertNotEquals($versionRead,$versionOld);
+
+		$this->assertEquals($testVersion,$versionRead);
+	}
+
+	
+	/**
+	 *	@test
+	 *	@expectedException Exception
+	 **/
+	public function it_will_thor_error_if_file_dont_exists(){
+		
+
+		new FileHelper('not existing file path');
 	}
 }
