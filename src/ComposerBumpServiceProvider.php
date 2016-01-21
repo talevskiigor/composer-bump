@@ -14,15 +14,15 @@ class ComposerBumpServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       
+
         $this->mergeConfigFrom(
             __DIR__.'/config.php', 'ComposerBump'
-        );
+            );
 
 
         $this->publishes([
             __DIR__.'/config.php' => config_path('composerbump.php'),
-        ]);
+            ]);
     }
 
     /**
@@ -33,7 +33,12 @@ class ComposerBumpServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBumpGenerator();
-        // TODO: Implement register() method.
+
+        $this->registerBumpPatchGenerator();
+        
+        $this->registerBumpMinorGenerator();
+        
+        $this->registerBumpMajorGenerator();
     }
 
 
@@ -46,4 +51,26 @@ class ComposerBumpServiceProvider extends ServiceProvider
         $this->commands('bump.bump');
     }
 
+    private function registerBumpPatchGenerator()
+    {
+        $this->app->singleton('bump.bump.patch', function ($app) {
+            return $app['Talevskiigor\ComposerBump\Commands\BumpPatchCommand'];
+        });
+        $this->commands('bump.bump.patch');
+    }
+
+    private function registerBumpMinorGenerator()
+    {
+        $this->app->singleton('bump.bump.minor', function ($app) {
+            return $app['Talevskiigor\ComposerBump\Commands\BumpMinorCommand'];
+        });
+        $this->commands('bump.bump.minor');
+    }
+    private function registerBumpMajorGenerator()
+    {
+        $this->app->singleton('bump.bump.major', function ($app) {
+            return $app['Talevskiigor\ComposerBump\Commands\BumpMajorCommand'];
+        });
+        $this->commands('bump.bump.major');
+    }
 }

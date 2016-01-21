@@ -4,24 +4,24 @@ namespace Talevskiigor\ComposerBump\Commands;
 
 use Talevskiigor\ComposerBump\Commands\Base\BaseCommand;
 
-class BumpCommand extends BaseCommand
+class BumpMinorCommand extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'bump';
+    protected $signature = 'bump:minor';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Bump version (This is alias of bump:patch)';
+    protected $description = 'Bump MINOR version (major.MINOR.patch => verison 0.1.0)';
 
 
-   
+
 
 
     /**
@@ -34,7 +34,7 @@ class BumpCommand extends BaseCommand
 
      $oldVersion = $this->fileHelper->getVersion();
 
-     $newVersion = $this->bumper->bump($oldVersion)->get();
+     $newVersion = $this->bumper->bumpMinor($oldVersion)->get();
 
      $this->fileHelper->setVersion($newVersion)->save();
 

@@ -56,6 +56,10 @@ class FileHelper {
 		file_put_contents($this->composerFilePath, $data);
 		return $this;
 	}
+	
+	public function save(){
+		return $this->writeFile();
+	}
 
 	public function getContents(){
 		return $this->composerFileContent;
