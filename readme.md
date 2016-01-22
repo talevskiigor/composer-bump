@@ -1,13 +1,15 @@
 # Description
 
-Bump composer.json version
+Laravel Artisan command to automaticly and easy bump composer.json version.
+
 
 For more information about versioning please visit [http://semver.org/](http://semver.org/) 
 
-Given a version number MAJOR.MINOR.PATCH, increment the:
- * MAJOR version when you make incompatible API changes,
- * MINOR version when you add functionality in a backwards-compatible manner, and
- * PATCH version when you make backwards-compatible bug fixes.
+Given a version number MAJOR.MINOR.PATCH, increment the:  
+
+ * MAJOR version when you make incompatible API changes,  
+ * MINOR version when you add functionality in a backwards-compatible manner, and  
+ * PATCH version when you make backwards-compatible bug fixes.  
 
 ## Install
 
@@ -50,7 +52,7 @@ If you want to use this package for only local development, you don't need to up
 
 
 ## Contributing
-[![Open Source](https://opensource.org/files/osi_greyscale_for_use_on_light_backgrounds_logo.png)](https://opensource.org/)
+[![Open Source](https://opensource.org/files/osi_greyscale_for_use_on_light_backgrounds_logo.png =96x)](https://opensource.org/)
 
 Add unit tests for any new or changed functionality. Lint and test your code using [PHPUnit](https://phpunit.de/).
 
