@@ -52,8 +52,7 @@ If you want to use this package for only local development, you don't need to up
 
 
 ## Contributing
-[![Open Source](https://opensource.org/files/osi_greyscale_for_use_on_light_backgrounds_logo.png =96x)](https://opensource.org/)
-
+<img src="https://opensource.org/files/osi_greyscale_for_use_on_light_backgrounds_logo.png" alt="Open Source" style="width: 96px;"/>
 Add unit tests for any new or changed functionality. Lint and test your code using [PHPUnit](https://phpunit.de/).
 
 1. Fork it
