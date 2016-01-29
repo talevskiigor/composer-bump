@@ -25,6 +25,9 @@ or if you prefer develop version:
 
 	Talevskiigor\ComposerBump\ComposerBumpServiceProvider::class,
 
+### Step 3 (optional): Add  Facade support
+
+	'ComposerBump'=>Talevskiigor\ComposerBump\Facades\ComposerBump::class,
 
 If you want to use this package for only local development, you don't need to update `config/app.php`. Instead, you can update provider `app/Providers/AppServiceProvider.php`, for example:
 
@@ -35,13 +38,14 @@ If you want to use this package for only local development, you don't need to up
 	    }
 	}
 
-### Step 3: Run the new Artisan Commands
+### Step 4: Run the new Artisan Commands
 
 	`php artisan bump` - this is alias of `bump:patch`
 
 
+
 # Usage 
-#### List of all commands:
+### List of all commands:
 
 
   `php artisan bump:major`          Bump MAJOR version (MAJOR.minor.patch => verison 1.0.0) 
@@ -50,6 +54,10 @@ If you want to use this package for only local development, you don't need to up
 
   `php artisan bump:patch`          Increments PATCH version (major.minor.PATCH => verison 0.0.1) 
 
+
+### Using Facade support:
+
+	return ComposerBump::getVersion();
 
 ## Contributing
 

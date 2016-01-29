@@ -32,6 +32,9 @@ class ComposerBumpServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        $this->app->bind('ComposerBump',\Talevskiigor\ComposerBump\ComposerBump::class);
+
         $this->registerBumpGenerator();
 
         $this->registerBumpPatchGenerator();

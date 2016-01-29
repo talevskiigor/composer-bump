@@ -43,7 +43,7 @@ class BaseCommand extends Command
     {
         parent::__construct();
         $this->bumper = new Bumper();
-        $this->fileHelper = new FileHelper($this->getFile());
+        $this->fileHelper = new FileHelper();
 
     }
 
@@ -64,8 +64,4 @@ class BaseCommand extends Command
 
 
 
-
- public function getFile(){
-    return base_path('composer.json');
-}
 }
