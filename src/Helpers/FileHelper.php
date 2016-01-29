@@ -8,7 +8,11 @@ class FileHelper {
 	protected $composerFilePath;
 	protected $composerFileContent;
 
-	public function __construct($filePath){
+	public function __construct($filePath = null){
+
+		if(!$filePath){
+			$filePath = $this->getFile();
+		}
 
 		$this->composerFilePath = $filePath;
 
@@ -91,6 +95,12 @@ class FileHelper {
 			break;
 		}
 
+	}
+
+
+
+	public function getFile(){
+		return base_path('composer.json');
 	}
 
 }
