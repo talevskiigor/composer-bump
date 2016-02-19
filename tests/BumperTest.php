@@ -52,7 +52,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
       * @test
       * @expectedException Exception
      **/
-     public function it_will_throw_exxeption_on_invalid_number_of_args_for_patch(){
+     public function it_will_throw_exception_on_invalid_number_of_args_for_patch(){
      	$bumper = new Bumper;
 
      	$bumper->bumpPatch('1.2.3.4.5')->get();
@@ -61,7 +61,7 @@ class BumperTest extends PHPUnit_Framework_TestCase
       * @test
       * @expectedException Exception
      **/
-     public function it_will_throw_exxeption_on_invalid_strings_in_version_for_patch(){
+     public function it_will_throw_exception_on_invalid_strings_in_version_for_patch(){
      	$bumper = new Bumper;
 
      	$bumper->bumpPatch('a.b.c')->get();
