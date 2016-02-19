@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/talevskiigor/composer-bump.svg?branch=master)](https://travis-ci.org/talevskiigor/composer-bump)
+
 # Description
 
 Laravel Artisan command to automatically and easy bump composer.json version information.
