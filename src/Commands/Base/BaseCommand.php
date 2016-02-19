@@ -19,49 +19,75 @@ use Talevskiigor\ComposerBump\Helpers\FileHelper;
 
 class BaseCommand extends Command
 {
+    
     /**
-     * The name and signature of the console command.
-     *
-     * @var string
+     * @var Bumper
      */
-    protected $signature = '';
+    protected $bumper;
 
     /**
-     * The console command description.
-     *
-     * @var string
+     * @var FileHelper
      */
-    protected $description = '';
+    protected $fileHelper;
 
+    /**
+     * @var
+     */
+    private $currentVersion;
 
     /**
      * Create a new command instance.
      *
-     * @return void
      */
     public function __construct()
     {
         parent::__construct();
-        $this->bumper = new Bumper();
+        
+        $this->bumper     = new Bumper();
         $this->fileHelper = new FileHelper();
 
+        // Best to keep track of the current version before it changes later on.
+        $this->setCurrentVersion($this->fileHelper->getVersion());
     }
 
-
     /**
-     * Execute the console command.
-     *
      * @return mixed
      */
-    public function handle()
+    public function currentVersion()
     {
+        return $this->currentVersion;
+    }
 
-    throw new \Exception("You need to implement your own handle() method.", 1);
+    /**
+     * @param $version
+     */
+    private function setCurrentVersion($version)
+    {
+        $this->currentVersion = $version;
+    }
 
- }
+    /**
+     * @return null
+     */
+    public function newVersion()
+    {
+        return $this->fileHelper->getVersion();
+    }
 
+    /**
+     * @param $version_type
+     * @return mixed
+     */
+    public function incrementVersion($version_type)
+    {
+        return $this->bumper->$version_type($this->currentVersion())->get();
+    }
 
-
-
-
+    /**
+     * Send some helpful information to user about the new version they are now using.
+     */
+    protected function sendInformationVersionMessage()
+    {
+        $this->info('Application Version bumped from: v'. $this->currentVersion().' to v' . $this->newVersion());
+    }
 }

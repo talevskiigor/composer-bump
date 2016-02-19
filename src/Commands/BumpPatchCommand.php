@@ -20,10 +20,6 @@ class BumpPatchCommand extends BaseCommand
      */
     protected $description = 'Increments PATCH version (major.minor.PATCH => verison 0.0.1)';
 
-
-   
-
-
     /**
      * Execute the console command.
      *
@@ -31,15 +27,8 @@ class BumpPatchCommand extends BaseCommand
      */
     public function handle()
     {
+        $this->fileHelper->setVersion($this->incrementVersion('bumpPatch'))->save();
 
-     $oldVersion = $this->fileHelper->getVersion();
-
-     $newVersion = $this->bumper->bumpPatch($oldVersion)->get();
-
-     $this->fileHelper->setVersion($newVersion)->save();
-
-     $this->info('Bump from: '. $oldVersion.' to ' . $newVersion);
- }
-
-
+        $this->sendInformationVersionMessage();
+    }
 }

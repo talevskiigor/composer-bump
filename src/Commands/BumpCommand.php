@@ -20,10 +20,6 @@ class BumpCommand extends BaseCommand
      */
     protected $description = 'Bump version (This is alias of bump:patch)';
 
-
-   
-
-
     /**
      * Execute the console command.
      *
@@ -31,14 +27,9 @@ class BumpCommand extends BaseCommand
      */
     public function handle()
     {
+        $this->fileHelper->setVersion($this->incrementVersion('bump'))->save();
 
-     $oldVersion = $this->fileHelper->getVersion();
-
-     $newVersion = $this->bumper->bump($oldVersion)->get();
-
-     $this->fileHelper->setVersion($newVersion)->save();
-
-     $this->info('Bump from: '. $oldVersion.' to ' . $newVersion);
- }
+        $this->sendInformationVersionMessage();
+    }
 
 }
