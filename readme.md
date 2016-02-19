@@ -1,7 +1,8 @@
 # Description
 
-Laravel Artisan command to automaticly and easy bump composer.json version.
+Laravel Artisan command to automatically and easy bump composer.json version information.
 
+Also has nice Facade to be used in about page or similar where you need to show version of your application.
 
 For more information about versioning please visit [http://semver.org/](http://semver.org/) 
 
