@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/talevskiigor/composer-bump.svg?branch=master)](https://travis-ci.org/talevskiigor/composer-bump)
+[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/talevskiigor/composer-bump)
+[![Total Downloads](https://poser.pugx.org/talevskiigor/composer-bump/d/total.svg)](https://packagist.org/packages/talevskiigor/composer-bump)
+[![Latest Stable Version](https://poser.pugx.org/talevskiigor/composer-bump/v/stable.svg)](https://packagist.org/packages/talevskiigor/composer-bump)
+[![Latest Unstable Version](https://poser.pugx.org/talevskiigor/composer-bump/v/unstable.svg)](https://packagist.org/packages/talevskiigor/composer-bump)
+[![License](https://poser.pugx.org/talevskiigor/composer-bump/license.svg)](https://packagist.org/packages/talevskiigor/composer-bump)
 
 # Description
 
