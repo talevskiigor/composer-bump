@@ -1,24 +1,35 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Mark
+ * Date: 20/02/2016
+ * Time: 00:23
+ */
 
 namespace Talevskiigor\ComposerBump\Commands;
 
 use Talevskiigor\ComposerBump\Commands\Base\BaseCommand;
 
-class BumpMinorCommand extends BaseCommand
+/**
+ * Class UnBumpCommand
+ *
+ * @package Talevskiigor\ComposerBump\Commands
+ */
+class UnBumpCommand extends BaseCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'bump:minor';
+    protected $signature = 'unbump';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Bump MINOR version (major.MINOR.patch => verison 0.1.0)';
+    protected $description = 'unBump version (minor.patch => verison 1.0.0)';
 
     /**
      * Execute the console command.
@@ -27,7 +38,7 @@ class BumpMinorCommand extends BaseCommand
      */
     public function handle()
     {
-        $this->fileHelper->setVersion($this->bumper->increment('minor'))->save();
+        $this->fileHelper->setVersion($this->bumper->decrement('patch'))->save();
 
         $this->sendInformationVersionMessage();
     }
