@@ -42,12 +42,12 @@ class BaseCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        
-        $this->bumper     = new Bumper();
+
         $this->fileHelper = new FileHelper();
 
-        // Best to keep track of the current version before it changes later on.
+        $this->fileHelper->getFile();
         $this->setCurrentVersion($this->fileHelper->getVersion());
+        $this->bumper = new Bumper($this->currentVersion());
     }
 
     /**
@@ -72,15 +72,6 @@ class BaseCommand extends Command
     public function newVersion()
     {
         return $this->fileHelper->getVersion();
-    }
-
-    /**
-     * @param $version_type
-     * @return mixed
-     */
-    public function incrementVersion($version_type)
-    {
-        return $this->bumper->$version_type($this->currentVersion())->get();
     }
 
     /**

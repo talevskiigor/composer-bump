@@ -28,7 +28,7 @@ class BumpMajorCommand extends BaseCommand
      */
     public function handle()
     {
-        $this->fileHelper->setVersion($this->incrementVersion('bumpMajor'))->save();
+        $this->fileHelper->setVersion($this->bumper->increment('major'))->save();
 
         $this->sendInformationVersionMessage();
     }
