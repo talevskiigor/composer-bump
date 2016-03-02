@@ -6,6 +6,7 @@ use Exception;
 class FileHelper {
 
 	protected $composerFilePath;
+	protected $composerFilePathBackup;
 	protected $composerFileContent;
 
 	public function __construct($filePath = null){
@@ -15,6 +16,7 @@ class FileHelper {
 		}
 
 		$this->composerFilePath = $filePath;
+		$this->composerFilePathBackup = $filePath . '-backup';
 
 		$this->readFile();
 
@@ -56,6 +58,9 @@ class FileHelper {
 	}
 
 	public function writeFile(){
+
+		$this->createBackupFile();
+
 		$data = json_encode($this->composerFileContent,JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 		file_put_contents($this->composerFilePath, $data);
 		return $this;
@@ -101,6 +106,28 @@ class FileHelper {
 
 	public function getFile(){
 		return base_path('composer.json');
+	}
+
+	private function createBackupFile()
+	{
+
+		if (!copy($this->composerFilePath, $this->composerFilePathBackup)) {
+			throw new Exception('Unable to make backup copy of the file: composer.json');
+		}
+
+		return true;
+
+	}
+
+	private function restoreBackupFile()
+	{
+
+		if (!copy($this->composerFilePathBackup,$this->composerFilePath )) {
+			throw new Exception('Unable to restore the backup file: composer.json-backup');
+		}
+
+		return true;
+
 	}
 
 }

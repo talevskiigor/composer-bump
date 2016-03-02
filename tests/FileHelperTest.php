@@ -28,6 +28,7 @@ class FileHelperTest extends PHPUnit_Framework_TestCase {
 	]";
 
 	protected $testFileName = 'test-dir/composer.json';
+	protected $testFileNameBackup = 'test-dir/composer.json-backup';
 	protected $testFileNameVFS = 'vfs://test-dir/composer.json';
 
 	public function setTestingFile($fileData)
@@ -36,6 +37,14 @@ class FileHelperTest extends PHPUnit_Framework_TestCase {
 		$this->root = vfsStream::setup(dirname($this->testFileName));
 
 		$file = vfsStream::newFile(basename($this->testFileName));
+
+		$content = json_encode($fileData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+		$file->setContent($content);
+
+		$this->root->addChild($file);
+
+		$file = vfsStream::newFile(basename($this->testFileNameBackup));
 
 		$content = json_encode($fileData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
