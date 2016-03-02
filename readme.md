@@ -44,8 +44,10 @@ Example output: `Bump from: 0.1.0 to 1.0.0`
 
 
 ### Using Facade support:
+
 In your controller you can easy get and return version of your application or package
-	return ComposerBump::getVersion();
+
+	`return ComposerBump::getVersion();`
 
 ## Install
 
@@ -91,6 +93,7 @@ Example output:
      > yes
 
     Restored file: composer.json-backup into file: composer.json
+
     unknown@Dell-Studio-1747:~/Code/ComposerBump$
 
 
@@ -100,10 +103,12 @@ Example output:
 Add unit tests for any new or changed functionality. Lint and test your code using [PHPUnit](https://phpunit.de/).
 
 1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+2. Switch to `develop` branch (`git checkout develop`)
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
+7. Thank You
 
 ## License
 Copyright (c) MIT license.	
