@@ -1,10 +1,10 @@
 <?php
 namespace Talevskiigor\ComposerBump;
+
 use Illuminate\Support\ServiceProvider;
 
 class ComposerBumpServiceProvider extends ServiceProvider
 {
-
 
 
     /**
@@ -16,13 +16,13 @@ class ComposerBumpServiceProvider extends ServiceProvider
     {
 
         $this->mergeConfigFrom(
-            __DIR__.'/config.php', 'ComposerBump'
-            );
+            __DIR__ . '/config.php', 'ComposerBump'
+        );
 
 
         $this->publishes([
-            __DIR__.'/config.php' => config_path('composerbump.php'),
-            ]);
+            __DIR__ . '/config.php' => config_path('composerbump.php'),
+        ]);
     }
 
     /**
@@ -33,17 +33,18 @@ class ComposerBumpServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->bind('ComposerBump',\Talevskiigor\ComposerBump\ComposerBump::class);
+        $this->app->bind('ComposerBump', \Talevskiigor\ComposerBump\ComposerBump::class);
 
         $this->registerBumpGenerator();
 
         $this->registerBumpPatchGenerator();
-        
-        $this->registerBumpMinorGenerator();
-        
-        $this->registerBumpMajorGenerator();
-    }
 
+        $this->registerBumpMinorGenerator();
+
+        $this->registerBumpMajorGenerator();
+
+        $this->registerUndoBump();
+    }
 
 
     private function registerBumpGenerator()
@@ -51,6 +52,7 @@ class ComposerBumpServiceProvider extends ServiceProvider
         $this->app->singleton('bump.bump', function ($app) {
             return $app['Talevskiigor\ComposerBump\Commands\BumpCommand'];
         });
+
         $this->commands('bump.bump');
     }
 
@@ -59,6 +61,7 @@ class ComposerBumpServiceProvider extends ServiceProvider
         $this->app->singleton('bump.bump.patch', function ($app) {
             return $app['Talevskiigor\ComposerBump\Commands\BumpPatchCommand'];
         });
+
         $this->commands('bump.bump.patch');
     }
 
@@ -67,13 +70,25 @@ class ComposerBumpServiceProvider extends ServiceProvider
         $this->app->singleton('bump.bump.minor', function ($app) {
             return $app['Talevskiigor\ComposerBump\Commands\BumpMinorCommand'];
         });
+
         $this->commands('bump.bump.minor');
     }
+
     private function registerBumpMajorGenerator()
     {
         $this->app->singleton('bump.bump.major', function ($app) {
             return $app['Talevskiigor\ComposerBump\Commands\BumpMajorCommand'];
         });
+
         $this->commands('bump.bump.major');
+    }
+
+    private function registerUndoBump()
+    {
+        $this->app->singleton('bump.bump.undo', function ($app) {
+            return $app['Talevskiigor\ComposerBump\Commands\UndoBumpCommand'];
+        });
+
+        $this->commands('bump.bump.undo');
     }
 }

@@ -108,7 +108,7 @@ class FileHelper {
 		return base_path('composer.json');
 	}
 
-	private function createBackupFile()
+	public function createBackupFile()
 	{
 
 		if (!copy($this->composerFilePath, $this->composerFilePathBackup)) {
@@ -119,7 +119,7 @@ class FileHelper {
 
 	}
 
-	private function restoreBackupFile()
+	public function restoreBackupFile()
 	{
 
 		if (!copy($this->composerFilePathBackup,$this->composerFilePath )) {

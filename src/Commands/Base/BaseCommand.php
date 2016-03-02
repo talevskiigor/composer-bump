@@ -36,8 +36,6 @@ class BaseCommand extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -50,8 +48,8 @@ class BaseCommand extends Command
 
     /**
      * Execute the console command.
-     *
      * @return mixed
+     * @throws \Exception
      */
     public function handle()
     {
