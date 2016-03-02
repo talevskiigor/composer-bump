@@ -76,6 +76,22 @@ If you want to use this package for only local development, you don't need to up
 	`php artisan bump` - this is alias of `bump:patch`
 
 
+## Nice to know
+
+Package will make backup copy of you composer.json file on each use, so you can easy do undo on changes, simple use undo command as:
+
+    `php artisan bump:undo`
+
+Example output:
+
+    !!! WARNING !!!!!! WARNING !!!!!! WARNING !!!
+        This will replace content of: composer.json file with content from file: composer.json-backup   !!!
+
+     Are you suere? [y|N] (yes/no) [no]:
+     > yes
+
+    Restored file: composer.json-backup into file: composer.json
+    unknown@Dell-Studio-1747:~/Code/ComposerBump$
 
 
 
