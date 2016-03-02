@@ -6,9 +6,17 @@
 
 # Description
 
-Laravel Artisan command to automatically and easy bump composer.json version information.
+Laravel Bump is a package that allows you to easy change your version of your application or package in composer.json file through an Artisan command.
 
-Also has nice Facade to be used in about page or similar where you need to show version of your application.
+Pretend you have an application or package that you would like to ensure has the right version information in composer.json, you can run `php artisan bump` to get automatically increase version information.
+
+### Example output
+
+    unknown@Dell-Studio-1747:~/Code/ComposerBump$ php artisan bump
+    Bump from: 0.0.1 to 0.0.2
+    unknown@Dell-Studio-1747:~/Code/ComposerBump$
+
+Also has nice Facade to be used in about page or similar where you need to show your application or package version to the customer.
 
 For more information about versioning please visit [http://semver.org/](http://semver.org/) 
 
@@ -18,15 +26,33 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
  * MINOR version when you add functionality in a backwards-compatible manner, and  
  * PATCH version when you make backwards-compatible bug fixes.  
 
+
+# Usage
+### List of all commands:
+
+  `php artisan bump:patch`          Increments PATCH version (major.minor.PATCH => verison 0.0.1)
+
+Example output: `Bump from: 0.0.1 to 0.0.2`
+
+  `php artisan bump:minor`          Bump MINOR version (major.MINOR.patch => verison 0.1.0)
+
+Example output: `Bump from: 0.0.2 to 0.1.0`
+
+  `php artisan bump:major`          Bump MAJOR version (MAJOR.minor.patch => verison 1.0.0)
+
+Example output: `Bump from: 0.1.0 to 1.0.0`
+
+
+### Using Facade support:
+In your controller you can easy get and return version of your application or package
+	return ComposerBump::getVersion();
+
 ## Install
 
 ### Step 1: Install through Composer
 
 	composer require talevskiigor/composer-bump
 
-or if you prefer develop version:
-
-		composer require talevskiigor/composer-bump=dev-develop
 
 ### Step 2: Update `config/app.php` and insert the folowing line in Service Provider	
 
@@ -51,20 +77,7 @@ If you want to use this package for only local development, you don't need to up
 
 
 
-# Usage 
-### List of all commands:
 
-
-  `php artisan bump:major`          Bump MAJOR version (MAJOR.minor.patch => verison 1.0.0) 
-
-  `php artisan bump:minor`          Bump MINOR version (major.MINOR.patch => verison 0.1.0) 
-
-  `php artisan bump:patch`          Increments PATCH version (major.minor.PATCH => verison 0.0.1) 
-
-
-### Using Facade support:
-
-	return ComposerBump::getVersion();
 
 ## Contributing
 
