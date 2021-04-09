@@ -1,12 +1,16 @@
 <?php
+
 namespace Talevskiigor\ComposerBump;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class ComposerBumpServiceProvider
+ *
+ * @package Talevskiigor\ComposerBump
+ */
 class ComposerBumpServiceProvider extends ServiceProvider
 {
-
-
     /**
      * Perform post-registration booting of services.
      *
@@ -14,7 +18,6 @@ class ComposerBumpServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->mergeConfigFrom(
             __DIR__ . '/config.php', 'ComposerBump'
         );
@@ -32,20 +35,13 @@ class ComposerBumpServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         $this->app->bind('ComposerBump', \Talevskiigor\ComposerBump\ComposerBump::class);
-
         $this->registerBumpGenerator();
-
         $this->registerBumpPatchGenerator();
-
         $this->registerBumpMinorGenerator();
-
         $this->registerBumpMajorGenerator();
-
         $this->registerUndoBump();
     }
-
 
     private function registerBumpGenerator()
     {

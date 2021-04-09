@@ -4,6 +4,11 @@ namespace Talevskiigor\ComposerBump\Commands;
 
 use Talevskiigor\ComposerBump\Commands\Base\BaseCommand;
 
+/**
+ * Class BumpMinorCommand
+ *
+ * @package Talevskiigor\ComposerBump\Commands
+ */
 class BumpMinorCommand extends BaseCommand
 {
     /**
@@ -18,11 +23,7 @@ class BumpMinorCommand extends BaseCommand
      *
      * @var string
      */
-    protected $description = 'Bump MINOR version (major.MINOR.patch => verison 0.1.0)';
-
-
-
-
+    protected $description = 'Bump MINOR version (major.MINOR.patch => version 0.1.0)';
 
     /**
      * Execute the console command.
@@ -31,14 +32,10 @@ class BumpMinorCommand extends BaseCommand
      */
     public function handle()
     {
-
-     $oldVersion = $this->fileHelper->getVersion();
-
-     $newVersion = $this->bumper->bumpMinor($oldVersion)->get();
-
-     $this->fileHelper->setVersion($newVersion)->save();
-
-     $this->info('Bump from: '. $oldVersion.' to ' . $newVersion);
- }
+        $oldVersion = $this->fileHelper->getVersion();
+        $newVersion = $this->bumper->bumpMinor($oldVersion)->get();
+        $this->fileHelper->setVersion($newVersion)->save();
+        $this->info('Bump from: ' . $oldVersion . ' to ' . $newVersion);
+    }
 
 }

@@ -1,18 +1,40 @@
-<?php 
+<?php
+
 namespace Talevskiigor\ComposerBump;
 
-class ComposerBump{
+/**
+ * Class ComposerBump
+ *
+ * @package Talevskiigor\ComposerBump
+ */
+class ComposerBump
+{
+    /**
+     * ComposerBump constructor.
+     */
+    public function __construct()
+    {
+        $this->fileHelper = new \Talevskiigor\ComposerBump\Helpers\FileHelper();
+    }
 
-	public function __construct(){
-		$this->fileHelper = new \Talevskiigor\ComposerBump\Helpers\FileHelper();
-	}
+    /**
+     * Get Version (alias)
+     *
+     * @return |null
+     */
+    public function version()
+    {
+        return $this->getVersion();
+    }
 
-	public function version(){
-		return $this->getVersion();
-	}
-
-	public function getVersion(){
-		return $this->fileHelper->getVersion();
-	}
+    /**
+     * Get Version
+     *
+     * @return string|null
+     */
+    public function getVersion()
+    {
+        return $this->fileHelper->getVersion();
+    }
 
 }
