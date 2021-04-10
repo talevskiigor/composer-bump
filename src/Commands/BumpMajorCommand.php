@@ -1,10 +1,14 @@
 <?php
 
-
 namespace Talevskiigor\ComposerBump\Commands;
 
 use Talevskiigor\ComposerBump\Commands\Base\BaseCommand;
 
+/**
+ * Class BumpMajorCommand
+ *
+ * @package Talevskiigor\ComposerBump\Commands
+ */
 class BumpMajorCommand extends BaseCommand
 {
     /**
@@ -19,11 +23,7 @@ class BumpMajorCommand extends BaseCommand
      *
      * @var string
      */
-    protected $description = 'Bump MAJOR version (MAJOR.minor.patch => verison 1.0.0)';
-
-
-    
-
+    protected $description = 'Bump MAJOR version (MAJOR.minor.patch => version 1.0.0)';
 
     /**
      * Execute the console command.
@@ -32,13 +32,9 @@ class BumpMajorCommand extends BaseCommand
      */
     public function handle()
     {
-
        $oldVersion = $this->fileHelper->getVersion();
-
        $newVersion = $this->bumper->bumpMajor($oldVersion)->get();
-
        $this->fileHelper->setVersion($newVersion)->save();
-
        $this->info('Bump from: '. $oldVersion.' to ' . $newVersion);
    }
 

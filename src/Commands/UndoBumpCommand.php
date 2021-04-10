@@ -4,6 +4,11 @@ namespace Talevskiigor\ComposerBump\Commands;
 
 use Talevskiigor\ComposerBump\Commands\Base\BaseCommand;
 
+/**
+ * Class UndoBumpCommand
+ *
+ * @package Talevskiigor\ComposerBump\Commands
+ */
 class UndoBumpCommand extends BaseCommand
 {
     /**
@@ -20,29 +25,21 @@ class UndoBumpCommand extends BaseCommand
      */
     protected $description = 'Restore last changes in the compose.json';
 
-
-   
-
-
     /**
      * Execute the console command.
      *
      * @return mixed
+     * @throws \Exception
      */
     public function handle()
     {
-
         $this->error(str_repeat('!!! WARNING !!!',3));
         $this->error('    This will replace content of: composer.json file with content from file: composer.json-backup   !!!');
         if ($this->confirm('Are you suere? [y|N]')) {
             $this->fileHelper->restoreBackupFile();
             $this->info('Restored file: composer.json-backup into file: composer.json');
-        }else {
+        } else {
             $this->info('Action was canceled.');
         }
-
-
- }
-
-
+    }
 }

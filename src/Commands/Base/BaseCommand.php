@@ -10,13 +10,15 @@
  **/
 namespace Talevskiigor\ComposerBump\Commands\Base;
 
-
 use Illuminate\Console\Command;
-
 use Talevskiigor\ComposerBump\Helpers\Bumper;
 use Talevskiigor\ComposerBump\Helpers\FileHelper;
 
-
+/**
+ * Class BaseCommand
+ *
+ * @package Talevskiigor\ComposerBump\Commands\Base
+ */
 class BaseCommand extends Command
 {
     /**
@@ -33,7 +35,6 @@ class BaseCommand extends Command
      */
     protected $description = '';
 
-
     /**
      * Create a new command instance.
      */
@@ -45,7 +46,6 @@ class BaseCommand extends Command
 
     }
 
-
     /**
      * Execute the console command.
      * @return mixed
@@ -53,13 +53,6 @@ class BaseCommand extends Command
      */
     public function handle()
     {
-
-    throw new \Exception("You need to implement your own handle() method.", 1);
-
- }
-
-
-
-
-
+        throw new \Exception("You need to implement your own handle() method.", 1);
+    }
 }
